@@ -1,0 +1,61 @@
+
+<p> eje1</p>
+
+@if (usuarioLogueado) {
+<p>Bienvenido!</p>
+}
+
+@if (usuarioLogueado) {
+<button (click)="cerrarSesion()">Cerrar sesión</button>
+} @else {
+<button (click)="iniciarSesion()">Iniciar sesión</button>
+}
+
+<hr>
+
+<p>eje2</p>
+
+<h4>Lista de productos</h4>
+<button (click)="vaciarlista()">Vaciar lista</button>
+<hr>
+<input [(ngModel)]="busqueda" placeholder="Buscá un producto...">
+
+<hr> 
+
+@for (producto of productosFiltrados; track producto.id; let i = $index, last = $last) {
+<p>{{ i + 1 }}.{{ producto.nombre }}: ${{ producto.precio }}</p>
+@if(last){
+  <p>Fin de la lista.</p>
+}
+} @empty {
+<p>No hay productos disponibles.</p>
+}
+
+<hr>
+
+<select [(ngModel)]="categorias">
+  <option value="electronica">Tecnología y electrónica</option>
+  <option value="ropa">Ropa y moda</option>
+  <option value="comida">Comida y bebidas</option>
+  <option value="otro">otro</option>
+
+</select>
+
+@switch (categorias) {
+@case ('electronica') {
+<p>💻 <--Tecnología y electrónica</p>
+}
+@case ('ropa') {
+<p>👕<-- Ropa y moda</p>
+}
+@case ('comida') {
+<p>🍕 <-- Comida y bebidas</p>
+}
+@default {
+<p>... otro</p>
+}
+}
+
+
+
+
