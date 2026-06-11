@@ -1,0 +1,11 @@
+<div class="container mt-4">
+<h2>Productos</h2>
+@for (p of productos; track p.id) {
+<app-producto-card
+[producto]="p"
+(eliminado)="onEliminado($event)">
+</app-producto-card>
+} @empty {
+<p class="text-muted">No hay productos.</p>
+}
+</div>
